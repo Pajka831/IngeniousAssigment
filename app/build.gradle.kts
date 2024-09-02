@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("plugin.serialization")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -59,12 +61,25 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation ("androidx.lifecycle:lifecycle-runtime-compose:2.3.1")
 
-    implementation(libs.ktor.client.android)
-    implementation(libs.ktor.client.serialization)
-    implementation(libs.ktor.client.logging)
 
-    implementation(libs.kotlinx.serialization)
+    implementation(platform("io.ktor:ktor-bom:2.3.12"))
+    implementation("io.ktor:ktor-client-android")
+    implementation("io.ktor:ktor-client-serialization")
+    implementation("io.ktor:ktor-client-logging")
+    implementation("io.ktor:ktor-client-content-negotiation")
+    implementation("io.ktor:ktor-serialization-kotlinx-json")
+    implementation ("io.insert-koin:koin-android:3.3.0")
+    implementation("io.insert-koin:koin-androidx-compose:3.3.0")
+    implementation("io.coil-kt:coil:2.7.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation ("androidx.navigation:navigation-compose:2.8.0-rc01")
+
+    implementation ("androidx.room:room-runtime:2.5.2")
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
+
+    kapt ("androidx.room:room-compiler:2.5.2")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
